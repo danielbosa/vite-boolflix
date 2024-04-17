@@ -15,6 +15,8 @@ export const store = reactive({
 
         }
     },
+    movies:[],
+    tvSeries:[],
     /*Da concatenare con quello che mi arriva dalle API */
     imageUrl: 'https://image.tmdb.org/t/p/original',
 })
