@@ -21,5 +21,8 @@
 </script>
 
 <style lang="scss" scoped>
-
+@use '../../src/assets/styles/partials/variables' as *;
+div{
+    margin-top: 50px;
+}
 </style>

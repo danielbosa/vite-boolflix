@@ -55,8 +55,8 @@
 
 <style lang="scss" scoped>
     .db-card{
-        //width: calc(100% / 5 - 20px);
-        width: 170px;
+        width: calc(100% / 5 - 20px);
+        //width: 170px;
     }
 
     .db-card-title{
