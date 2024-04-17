@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" placeholder="Cerca un film" v-model="store.searchWord">
+        <input type="text" placeholder="Cerca un film" v-model="store.searchWord"  @keyup.enter="$emit('searchWord')">
         <button @click="$emit('searchWord')">CERCA</button>
     </div>
 </template>
