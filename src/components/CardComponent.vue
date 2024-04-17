@@ -1,6 +1,6 @@
 <template>
     <div class="db-card">
-        <img class="img-fluid" :src="`${ image }`">
+        <img class="img-fluid" :src="`${ image }`" :alt="`${ title }`">
         <div class="db-card-info text-center">
             <div class="db-card-title">
                     {{ title }}
