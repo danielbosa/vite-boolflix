@@ -5,7 +5,7 @@
     </div>
     <section class="db-debug">SERIE TV</section>
     <div class="d-flex gap-2 flex-wrap">
-        <CardComponent v-for="tv in store.tvSeries" :title="tv.title" :originalTitle="tv.originalTitle" :vote="tv.vote" :language="tv.language"/>
+        <CardComponent v-for="tv in store.tvSeries" :title="tv.title" :originalTitle="tv.originalTitle" :vote="tv.vote" :language="tv.language" :image="this.store.imageUrl+tv.posterImage "/>
     </div>
 </template>
 

@@ -9,8 +9,12 @@
                 {{ originalTitle }}
             </div>
             <div>
-                <span></span>
-                {{ Math.ceil(vote) }}
+                <span v-for="n in this.starsVoteArray()">
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span v-for="n in (5 - this.starsVoteArray().length)">
+                    <i class="fa-regular fa-star"></i>
+                </span>
             </div>
             <div>
                 <img :src="`https://flagcdn.com/24x18/${language}.png`" :alt="`${language}`" @error="handleError">
@@ -29,6 +33,7 @@
             return{
                 store,
                 flagImage: true,
+                roundedVote: 0,
         }
     },
     methods:{
@@ -36,8 +41,13 @@
             event.target.style.display = 'none';
             this.flagImage = false;
         },
-        roundUp(num){
-            Math.ceil(num);
+        starsVoteArray(){
+            let stars = [];
+            const roundedVote = Math.ceil(this.vote / 2);
+            for (let index = 0; index < roundedVote; index++) {
+                stars.push(index);
+            }
+            return stars
         },
     }
 }

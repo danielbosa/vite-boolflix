@@ -9,7 +9,7 @@ export const store = reactive({
     },
     options:{
         params:{
-            /*Ogni volta che faccio una chiamata api, passo api key */
+            /*At every call, I must pass the API key */
             api_key: '2b9c68b42b884cbe5e46d84cf477a0f5',
             query: 'a',
 
@@ -18,6 +18,6 @@ export const store = reactive({
     movies: [],
     tvSeries: [],
     searchWord: '',
-    /*Da concatenare con quello che mi arriva dalle API */
+    /*to concat with data got from api to get the wanted image */
     imageUrl: 'https://image.tmdb.org/t/p/original',
 })
