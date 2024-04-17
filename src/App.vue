@@ -1,11 +1,11 @@
 <template>
-  <h1 class="text-center">Ciao</h1>
-  <i class="fa fa-solid fa-home"></i>
+  <HeaderComponent @searchWord="searchItem()"/>
 </template>
 
 <script>
 import axios from 'axios';
 import { store } from './store.js';
+import HeaderComponent from './components/HeaderComponent.vue';
   export default {
     name: 'App',
     data(){
@@ -13,7 +13,15 @@ import { store } from './store.js';
         store
       }
     },
+    components:{
+      HeaderComponent,
+    },
     methods:{
+      searchItem(){
+        console.log(this.store.searchWord);
+        this.store.options.params.query = this.store.searchWord;
+        this.getMovies()
+      },
       getMovies(){
         axios.get(this.store.apiUrl + this.store.endPoint.movie,this.store.options).then((res)=>{
           this.store.movies = res.data.results.map((movie)=>{
