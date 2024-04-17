@@ -35,6 +35,7 @@ import MainComponent from './components/MainComponent.vue';
               vote: movie.vote_average,
               language: movie.original_language,
               posterImage: movie.poster_path,
+              overview: movie.overview
             }
           });
           console.log(this.store.movies);
@@ -49,6 +50,7 @@ import MainComponent from './components/MainComponent.vue';
               vote: tv.vote_average,
               language: tv.original_language,
               posterImage: tv.poster_path,
+              overview: tv.overview
             }
           });
           console.log(this.store.tvSeries);

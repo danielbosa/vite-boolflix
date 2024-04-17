@@ -36,6 +36,7 @@ import { store } from '@/store';
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 9000;
 }
 
 #logo{
