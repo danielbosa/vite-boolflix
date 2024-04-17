@@ -1,16 +1,21 @@
 <template>
     <div class="db-card">
-        <img class="img-fluid">
+        <img class="img-fluid" :src="`${ image }`">
         <div class="db-card-info text-center">
-            <br>
             <div class="db-card-title">
                     {{ title }}
             </div>
-            <br>
             <div>
                 {{ originalTitle }}
             </div>
-            <br>
+            <div>
+                <span></span>
+                {{ Math.ceil(vote) }}
+            </div>
+            <div>
+                <img :src="`https://flagcdn.com/24x18/${language}.png`" :alt="`${language}`" @error="handleError">
+                <span v-if="(!this.flagImage)">{{ language }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -19,11 +24,21 @@
     import { store } from '@/store';
     export default {
         name: 'CardComponent',
-        props:['title', 'originalTitle', 'vote', 'language'],
+        props:['title', 'originalTitle', 'vote', 'language', 'image'],
         data(){
             return{
-                store
+                store,
+                flagImage: true,
         }
+    },
+    methods:{
+        handleError(event){
+            event.target.style.display = 'none';
+            this.flagImage = false;
+        },
+        roundUp(num){
+            Math.ceil(num);
+        },
     }
 }
 </script>
@@ -35,13 +50,11 @@
     }
 
     .db-card-title{
-        color: white;
         font-weight: 900;
         text-transform: uppercase;
     }
 
     .db-card-info{
-        background-color: blue;
-        height: 150px;
+        border: 1px solid blue;
     }
 </style>

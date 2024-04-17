@@ -23,7 +23,8 @@ import MainComponent from './components/MainComponent.vue';
       searchItem(){
         console.log(this.store.searchWord);
         this.store.options.params.query = this.store.searchWord;
-        this.getMovies()
+        this.getMovies();
+        this.getTvSeries();
       },
       getMovies(){
         axios.get(this.store.apiUrl + this.store.endPoint.movie,this.store.options).then((res)=>{
@@ -33,6 +34,7 @@ import MainComponent from './components/MainComponent.vue';
                originalTitle: movie.original_title,
                vote: movie.vote_average,
                language: movie.original_language,
+               posterImage: movie.poster_path,
             }
           });
           console.log(this.store.movies);
@@ -40,15 +42,15 @@ import MainComponent from './components/MainComponent.vue';
       },
       getTvSeries(){
         axios.get(this.store.apiUrl + this.store.endPoint.tv,this.store.options).then((res)=>{
-          this.store.tv = res.data.results.map((tv)=>{
+          this.store.tvSeries = res.data.results.map((tv)=>{
             return{
-               name: tv.title,
+               title: tv.name,
                originalTitle: tv.original_name,
                vote: tv.vote_average,
                language: tv.original_language,
             }
           });
-          console.log(this.store.movies);
+          console.log(this.store.tvSeries);
         })
       }
     },
