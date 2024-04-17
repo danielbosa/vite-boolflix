@@ -1,11 +1,13 @@
 <template>
   <HeaderComponent @searchWord="searchItem()"/>
+  <MainComponent/>
 </template>
 
 <script>
 import axios from 'axios';
 import { store } from './store.js';
 import HeaderComponent from './components/HeaderComponent.vue';
+import MainComponent from './components/MainComponent.vue';
   export default {
     name: 'App',
     data(){
@@ -15,6 +17,7 @@ import HeaderComponent from './components/HeaderComponent.vue';
     },
     components:{
       HeaderComponent,
+      MainComponent,
     },
     methods:{
       searchItem(){
