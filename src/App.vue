@@ -25,10 +25,9 @@ import MainComponent from './components/MainComponent.vue';
           this.getMovies();
           this.getTvSeries();
         }
-      },
-      getMovies(){
-        axios.get(this.store.apiUrl + this.store.endPoint.movie,this.store.options).then((res)=>{
-          this.store.movies = res.data.results.map((movie)=>{
+      },getPopularMovies(){
+        axios.get(this.store.apiUrl + this.store.endPoint.popularMovie,this.store.options).then((res)=>{
+          this.store.popularMovies = res.data.results.map((movie)=>{
             return{
               title: movie.title,
               originalTitle: movie.original_title,
@@ -38,7 +37,47 @@ import MainComponent from './components/MainComponent.vue';
               overview: movie.overview
             }
           });
-          console.log(this.store.movies);
+        }).catch((error) =>{
+            // handle error
+           console.log(error);
+           //this.store.error.message = error.message;
+        }).finally(() =>{
+          //this.store.loading = false;
+        });
+      },
+      getPopularTvSeries(){
+        axios.get(this.store.apiUrl + this.store.endPoint.popularTvSeries,this.store.options).then((res)=>{
+          this.store.popularTvSeries = res.data.results.map((tv)=>{
+            return{
+              title: tv.name,
+              originalTitle: tv.original_name,
+              vote: tv.vote_average,
+              language: tv.original_language,
+              posterImage: tv.poster_path,
+              overview: tv.overview
+            }
+          });
+        }).catch((error) =>{
+            // handle error
+           console.log(error);
+           //this.store.error.message = error.message;
+        }).finally(() =>{
+          //this.store.loading = false;
+        });
+      },
+      getMovies(){
+        axios.get(this.store.apiUrl + this.store.endPoint.movie,this.store.options).then((res)=>{
+          this.store.movies.title = 'Movies';
+          this.store.movies.collection = res.data.results.map((movie)=>{
+            return{
+              title: movie.title,
+              originalTitle: movie.original_title,
+              vote: movie.vote_average,
+              language: movie.original_language,
+              posterImage: movie.poster_path,
+              overview: movie.overview
+            }
+          });
         }).catch((error) =>{
             // handle error
            console.log(error);
@@ -49,7 +88,8 @@ import MainComponent from './components/MainComponent.vue';
       },
       getTvSeries(){
         axios.get(this.store.apiUrl + this.store.endPoint.tv,this.store.options).then((res)=>{
-          this.store.tvSeries = res.data.results.map((tv)=>{
+          this.store.tvSeries.title = 'TV Series';
+          this.store.tvSeries.collection = res.data.results.map((tv)=>{
             return{
               title: tv.name,
               originalTitle: tv.original_name,
@@ -59,7 +99,6 @@ import MainComponent from './components/MainComponent.vue';
               overview: tv.overview
             }
           });
-          console.log(this.store.tvSeries);
         }).catch((error) =>{
             // handle error
            console.log(error);
@@ -70,12 +109,16 @@ import MainComponent from './components/MainComponent.vue';
       }
     },
     created(){
-      this.getMovies();
-      this.getTvSeries();
+      this.getPopularTvSeries();
+      this.getPopularMovies();
     }
   }
 </script>
 
 <style lang="scss" scoped>
+@use './assets/styles/partials/variables' as *;
 
+div{
+  background-color: $secondary;
+}
 </style>

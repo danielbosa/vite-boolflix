@@ -40,10 +40,10 @@
 </script>
 
 <style lang="scss" scoped>
-    .db-debug{
-        background-color: red;
-    }
-
+@use '../../src/assets/styles/partials/variables' as *;
+h3{
+    color: $main
+}
     .db-row{
         display: flex;
         flex-wrap: wrap;

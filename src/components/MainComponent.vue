@@ -1,7 +1,9 @@
 <template>
     <div>
-        <ItemListComponent :title="'Film'" :list="this.store.movies"/>
-        <ItemListComponent :title="'Serie TV'" :list="this.store.tvSeries"/>
+        <ItemListComponent :title="this.store.movies.title" :list="this.store.movies.collection"/>
+        <ItemListComponent :title="this.store.tvSeries.title" :list="this.store.tvSeries.collection"/>
+        <ItemListComponent :title="'Most popular movies now'" :list="this.store.popularMovies"/>
+        <ItemListComponent :title="'Trending TV Series'" :list="this.store.popularTvSeries"/>
     </div>
 </template>
 
@@ -18,6 +20,13 @@
                 store
         }
     },
+    computed:{
+        // emptyList(){
+        //     if(this.store.movies){
+        //         return true
+        //     }
+        // },
+    }
 }
 </script>
 
