@@ -1,5 +1,5 @@
 <template>
-    <section class="container">
+    <section class="container pb-4">
         <h3>{{title}}</h3>
         <div class="db-row">
             <CardComponent v-for="(item, index) in list" :key="index" :title="item.title" :originalTitle="item.originalTitle" :vote="item.vote" :language="item.language" :image="this.store.imageUrl+item.posterImage" :overview="item.overview"/>
