@@ -23,7 +23,7 @@ import MainComponent from './components/MainComponent.vue';
       searchItem(){
         if(this.store.options.params.query){
           this.getMovies();
-        this.getTvSeries();
+          this.getTvSeries();
         }
       },
       getMovies(){

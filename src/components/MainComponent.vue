@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <ItemListComponent :title="'Film'" :list="this.store.movies"/>
         <ItemListComponent :title="'Serie TV'" :list="this.store.tvSeries"/>
     </div>
@@ -23,7 +23,9 @@
 
 <style lang="scss" scoped>
 @use '../../src/assets/styles/partials/variables' as *;
+
 div{
     margin-top: 50px;
+    background-color: $secondary;
 }
 </style>
