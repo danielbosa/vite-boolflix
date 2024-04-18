@@ -1,6 +1,6 @@
 <template>
   <HeaderComponent @searchWord="searchItem()"/>
-  <MainComponent/>
+  <MainComponent :list="this.store.collections"/>
 </template>
 
 <script>
@@ -16,14 +16,28 @@ import MainComponent from './components/MainComponent.vue';
     },
     data(){
       return{
-        store
+        store,
+        collectionsObj : {
+            title: '',
+            collection: [],
+            searchWord: '',
+        },
       }
     },
     methods:{
       searchItem(){
         if(this.store.options.params.query){
-          this.getMovies();
-          this.getTvSeries();
+          // this.getMovies();
+          // this.getTvSeries();
+          this.store.collections.push(this.collectionsObj);
+          const wordS = this.store.collections[this.store.collections.length-1].searchWord = this.store.options.params.query;
+          this.getTvSeriesEXP();
+
+          this.store.collections.push(this.collectionsObj);
+          const wordM = this.store.collections[this.store.collections.length-1].searchWord = this.store.options.params.query;
+          this.getMoviesEXP();
+
+          console.log(this.store.collections)
         }
       },getPopularMovies(){
         axios.get(this.store.apiUrl + this.store.endPoint.popularMovie,this.store.options).then((res)=>{
@@ -90,6 +104,51 @@ import MainComponent from './components/MainComponent.vue';
         axios.get(this.store.apiUrl + this.store.endPoint.tv,this.store.options).then((res)=>{
           this.store.tvSeries.title = 'TV Series';
           this.store.tvSeries.collection = res.data.results.map((tv)=>{
+            return{
+              title: tv.name,
+              originalTitle: tv.original_name,
+              vote: tv.vote_average,
+              language: tv.original_language,
+              posterImage: tv.poster_path,
+              overview: tv.overview
+            }
+          });
+        }).catch((error) =>{
+            // handle error
+           console.log(error);
+           //this.store.error.message = error.message;
+        }).finally(() =>{
+          //this.store.loading = false;
+        });
+      },
+      //version with unique collections in store: array to be populated via api
+      getMoviesEXP(){
+        axios.get(this.store.apiUrl + this.store.endPoint.movie,this.store.options).then((res)=>{
+          //this.store.collections.push(this.collectionsObj)
+          this.store.collections[this.store.collections.length-1].title = 'Movies';
+          this.store.collections[this.store.collections.length-1].collection = res.data.results.map((tv)=>{
+            return{
+              title: tv.name,
+              originalTitle: tv.original_name,
+              vote: tv.vote_average,
+              language: tv.original_language,
+              posterImage: tv.poster_path,
+              overview: tv.overview
+            }
+          });
+        }).catch((error) =>{
+            // handle error
+           console.log(error);
+           //this.store.error.message = error.message;
+        }).finally(() =>{
+          //this.store.loading = false;
+        });
+      },
+      getTvSeriesEXP(){
+        axios.get(this.store.apiUrl + this.store.endPoint.tv,this.store.options).then((res)=>{
+          //this.store.collections.push(this.collectionsObj)
+          this.store.collections[this.store.collections.length-1].title = 'TV Series';
+          this.store.collections[1].collection = res.data.results.map((tv)=>{
             return{
               title: tv.name,
               originalTitle: tv.original_name,

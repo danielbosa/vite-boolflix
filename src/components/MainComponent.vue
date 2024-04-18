@@ -1,9 +1,10 @@
 <template>
     <div>
-        <ItemListComponent :title="this.store.movies.title" :list="this.store.movies.collection"/>
+        <ItemListComponent v-for="(item, index) in list" :key="index" :title="item.title" :list="item.collection" :word="item.searchWord"/>
+        <!-- <ItemListComponent :title="this.store.movies.title" :list="this.store.movies.collection"/>
         <ItemListComponent :title="this.store.tvSeries.title" :list="this.store.tvSeries.collection"/>
         <ItemListComponent :title="'Most popular movies now'" :list="this.store.popularMovies"/>
-        <ItemListComponent :title="'Trending TV Series'" :list="this.store.popularTvSeries"/>
+        <ItemListComponent :title="'Trending TV Series'" :list="this.store.popularTvSeries"/> -->
     </div>
 </template>
 
@@ -14,6 +15,11 @@
         name: 'MainComponent',
         components:{
         ItemListComponent,
+    },
+    props:{
+        list: Array,
+        title: String,
+        word: String,
     },
         data(){
             return{

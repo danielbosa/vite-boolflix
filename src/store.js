@@ -15,9 +15,12 @@ export const store = reactive({
             api_key: '2b9c68b42b884cbe5e46d84cf477a0f5',
         }
     },
+    collections:[
+
+    ],
     movies: {
         title: '',
-        collection: []
+        collection: [],
     },
     tvSeries: {
         title: '',
@@ -25,6 +28,7 @@ export const store = reactive({
     },
     popularMovies: [],
     popularTvSeries:[],
+    
     /*to concat with data got from api to get the wanted image */
     imageUrl: 'https://image.tmdb.org/t/p/original',
 })
