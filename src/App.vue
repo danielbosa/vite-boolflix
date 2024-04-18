@@ -21,8 +21,6 @@ import MainComponent from './components/MainComponent.vue';
     },
     methods:{
       searchItem(){
-        console.log(this.store.searchWord);
-        this.store.options.params.query = this.store.searchWord;
         this.getMovies();
         this.getTvSeries();
       },

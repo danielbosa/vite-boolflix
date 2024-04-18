@@ -17,7 +17,6 @@ export const store = reactive({
     },
     movies: [],
     tvSeries: [],
-    searchWord: '',
     /*to concat with data got from api to get the wanted image */
     imageUrl: 'https://image.tmdb.org/t/p/original',
 })

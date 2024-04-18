@@ -4,7 +4,7 @@
             boolflix
         </div>
         <div>
-            <input type="text" placeholder="Cerca un film" v-model="store.searchWord"  @keyup.enter="$emit('searchWord')">
+            <input type="text" placeholder="Cerca un film" v-model="store.options.params.query" @keyup.enter="$emit('searchWord')">
             <button @click="$emit('searchWord')">CERCA</button>
         </div>
         
