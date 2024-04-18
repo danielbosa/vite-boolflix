@@ -1,5 +1,11 @@
 <template>
     <section>
+        <h3>{{title}}</h3>
+        <div class="db-row">
+            <CardComponent v-for="(item, index) in list" :key="index" :title="item.title" :originalTitle="item.originalTitle" :vote="item.vote" :language="item.language" :image="this.store.imageUrl+item.posterImage" :overview="item.overview"/>
+        </div>
+    </section>
+    <!-- <section>
         <h3>FILM</h3>
         <div class="db-row">
             <CardComponent v-for="movie in store.movies" :title="movie.title" :originalTitle="movie.originalTitle" :vote="movie.vote" :language="movie.language" :image="this.store.imageUrl+movie.posterImage" :overview="movie.overview"/>
@@ -10,7 +16,7 @@
         <div class="db-row">
             <CardComponent v-for="tv in store.tvSeries" :title="tv.title" :originalTitle="tv.originalTitle" :vote="tv.vote" :language="tv.language" :image="this.store.imageUrl+tv.posterImage" :overview="tv.overview"/>
         </div>
-    </section>
+    </section> -->
 </template>
 
 <script>
@@ -18,14 +24,18 @@
     import CardComponent from './CardComponent.vue';
     export default {
         name: 'ItemListComponent',
+        components:{
+        CardComponent
+    },
+    props:{
+        title: String,
+        list: Array,
+    },
         data(){
             return{
                 store
         }
     },
-    components:{
-        CardComponent
-    }
 }
 </script>
 

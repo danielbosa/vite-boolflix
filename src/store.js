@@ -11,7 +11,7 @@ export const store = reactive({
         params:{
             /*At every call, I must pass the API key */
             api_key: '2b9c68b42b884cbe5e46d84cf477a0f5',
-            query: 'a',
+            query: '',
 
         }
     },

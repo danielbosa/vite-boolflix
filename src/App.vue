@@ -10,19 +10,21 @@ import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
   export default {
     name: 'App',
+    components:{
+      HeaderComponent,
+      MainComponent,
+    },
     data(){
       return{
         store
       }
     },
-    components:{
-      HeaderComponent,
-      MainComponent,
-    },
     methods:{
       searchItem(){
-        this.getMovies();
+        if(this.store.options.params.query){
+          this.getMovies();
         this.getTvSeries();
+        }
       },
       getMovies(){
         axios.get(this.store.apiUrl + this.store.endPoint.movie,this.store.options).then((res)=>{
@@ -37,6 +39,12 @@ import MainComponent from './components/MainComponent.vue';
             }
           });
           console.log(this.store.movies);
+        }).catch((error) =>{
+            // handle error
+           console.log(error);
+           //this.store.error.message = error.message;
+        }).finally(() =>{
+          //this.store.loading = false;
         });
       },
       getTvSeries(){
@@ -52,7 +60,13 @@ import MainComponent from './components/MainComponent.vue';
             }
           });
           console.log(this.store.tvSeries);
-        })
+        }).catch((error) =>{
+            // handle error
+           console.log(error);
+           //this.store.error.message = error.message;
+        }).finally(() =>{
+          //this.store.loading = false;
+        });
       }
     },
     created(){

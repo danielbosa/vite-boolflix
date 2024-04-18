@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <ItemListComponent/>
+        <ItemListComponent :title="'Film'" :list="this.store.movies"/>
+        <ItemListComponent :title="'Serie TV'" :list="this.store.tvSeries"/>
     </div>
 </template>
 
@@ -9,13 +10,13 @@
     import ItemListComponent from './ItemListComponent.vue';
     export default {
         name: 'MainComponent',
+        components:{
+        ItemListComponent,
+    },
         data(){
             return{
                 store
         }
-    },
-    components:{
-        ItemListComponent,
     },
 }
 </script>
