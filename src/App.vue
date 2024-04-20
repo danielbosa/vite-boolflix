@@ -16,7 +16,12 @@ export default {
   },
   data() {
     return {
-      store
+      store,
+      collectionsObj: {
+        title: '',
+        collection: [],
+        searchWord: '',
+      }
     }
   },
   methods: {
@@ -25,7 +30,8 @@ export default {
         this.getMovies();
         this.getTvSeries();
       }
-    }, getPopularMovies() {
+    },
+    getPopularMovies() {
       axios.get(this.store.apiUrl + this.store.endPoint.popularMovie, this.store.options).then((res) => {
         this.store.popularMovies = res.data.results.map((movie) => {
           return {
@@ -147,12 +153,12 @@ export default {
         console.log(this.store.collections);
       })
     },
-    created() {
+  },
+  created() {
       this.getMedia();
-      //this.getPopularTvSeries();
+      this.getPopularTvSeries();
       //this.getPopularMovies();
     }
-  }
 }
 </script>
 
