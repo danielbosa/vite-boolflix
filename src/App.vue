@@ -1,4 +1,5 @@
 <template>
+  <!-- <Jumbo/> -->
   <HeaderComponent @searchWord="searchItem()" @home="getHomepage()"/>
   <MainComponent :list="this.store.collections"/>
 </template>
@@ -8,11 +9,13 @@ import axios from 'axios';
 import { store } from './store.js';
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
+import Jumbo from './components/Jumbo.vue';
 export default {
   name: 'App',
   components: {
     HeaderComponent,
     MainComponent,
+    Jumbo
   },
   data() {
     return {
@@ -37,6 +40,20 @@ export default {
         moviesCollection.title = 'Movies';
         moviesCollection.class = 'Searched';
         console.log(res.data.results);
+        
+        //!!!ATTN!!!
+        this.store.movies.title = 'SEARCHED movies';
+        this.store.movies.collection = res.data.results.map((movie) => {
+          return {
+            title: movie.title,
+            originalTitle: movie.original_title,
+            vote: movie.vote_average,
+            language: movie.original_language,
+            posterImage: movie.poster_path,
+            overview: movie.overview
+          }})
+          console.log(this.store.movies);
+        
         moviesCollection.collection = res.data.results.map((movie) => {
           return {
             title: movie.title,
@@ -61,7 +78,6 @@ export default {
         const seriesCollection = { ...this.collectionsObj };
         seriesCollection.title = 'TV Series';
         seriesCollection.class = 'Searched';
-        console.log(res.data.results);
         seriesCollection.collection = res.data.results.map((tv) => {
           return {
             title: tv.name,
@@ -139,15 +155,16 @@ export default {
         this.store.collections.splice(2,1,tvSeriesCollection);
         
         //push into the specific containers to preserve data and be able to recall them at need
-        this.store.popularMovies.splice(0,1,moviesCollection);
-        this.store.popularTvSeries.splice(1,1,tvSeriesCollection);
+        this.store.topRatedSeries.splice(0,1,topRatedSeries);
+        this.store.popularMovies.splice(1,1,moviesCollection);
+        this.store.popularTvSeries.splice(2,1,tvSeriesCollection);
 
         console.log(this.store.collections);
       })
     },
     getHomepage(){
       this.store.collections = [];
-      this.store.collections.push(...this.store.popularMovies, ...this.store.popularTvSeries);
+      this.store.collections.push(...this.store.topRatedSeries,...this.store.popularMovies, ...this.store.popularTvSeries);
       console.log(this.store.collections)
     },
   },
