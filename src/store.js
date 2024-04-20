@@ -8,6 +8,7 @@ export const store = reactive({
         tv: 'search/tv',
         popularMovie: 'movie/popular',
         popularTvSeries: 'tv/popular',
+        topRatedSeries: 'tv/top_rated',
     },
     options:{
         params:{
@@ -15,6 +16,8 @@ export const store = reactive({
             api_key: '2b9c68b42b884cbe5e46d84cf477a0f5',
         }
     },
+    search: false,
+    //per gestire la visibilità dei list component: prima o dopo una ricerca query
     collections:[
 
     ],

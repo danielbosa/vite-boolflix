@@ -3,21 +3,29 @@
         <div id="logo">
             boolflix
         </div>
+        <ul>
+            <li @click="$emit('home')">Home</li>
+            <li>Movies</li>
+            <li>Series</li>
+            <li>Logout</li>
+            <!-- torna la login page dove selezionare account -->
+        </ul>
         <div>
-            <input type="text" placeholder="Cerca un film" v-model.trim="store.options.params.query" @keyup.enter="$emit('searchWord')">
+            <input type="text" placeholder="Cerca un film" v-model.trim="store.options.params.query"
+                @keyup.enter="$emit('searchWord')">
             <button @click="$emit('searchWord')">CERCA</button>
         </div>
-        
+
     </div>
 </template>
 
 <script>
 import { store } from '@/store';
-    export default {
-        name: 'HeaderComponent',
-        data(){
-            return{
-                store
+export default {
+    name: 'HeaderComponent',
+    data() {
+        return {
+            store
         }
     }
 }
@@ -25,7 +33,8 @@ import { store } from '@/store';
 
 <style lang="scss" scoped>
 @use '../../src/assets/styles/partials/variables' as *;
-#header{
+
+#header {
     background-color: $dark;
     height: 50px;
     display: flex;
@@ -39,11 +48,26 @@ import { store } from '@/store';
     z-index: 9000;
 }
 
-#logo{
+#logo {
     text-transform: uppercase;
     font-size: 1.5rem;
     font-weight: 900;
     color: $highlight;
 }
 
+ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    li {
+        padding: 5px 5px;
+        cursor: pointer;
+        color: $main;
+        &:hover{
+            color: $secondary;
+            font-weight: bold;
+        }
+    }
+}
 </style>
