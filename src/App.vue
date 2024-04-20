@@ -1,6 +1,6 @@
 <template>
   <HeaderComponent @searchWord="searchItem()" />
-  <MainComponent />
+  <MainComponent :list="this.store.collections"/>
 </template>
 
 <script>
