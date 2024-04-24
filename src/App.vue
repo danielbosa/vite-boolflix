@@ -9,13 +9,13 @@ import axios from 'axios';
 import { store } from './store.js';
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
-import Jumbo from './components/Jumbo.vue';
+//import Jumbo from './components/Jumbo.vue';
 export default {
   name: 'App',
   components: {
     HeaderComponent,
     MainComponent,
-    Jumbo
+    //Jumbo
   },
   data() {
     return {
